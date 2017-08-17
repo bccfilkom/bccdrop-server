@@ -15,6 +15,7 @@ app.use('/graphql', GraphHTTP({
   graphiql: true,
 }));
 
+//App Listen
 app.listen(APP_PORT, ()=> {
   console.log(`App listening on port ${APP_PORT}`);
 });
