@@ -16,24 +16,21 @@ const connection = new Sequelize('naganoblog', 'root', 'root', {
 });
 
 const User = connection.define('user', {
-  firstName: {
+  username: {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  lastName: {
+  password: {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  desc: {
-    type: Sequelize.STRING,
-    allowNull: true,
-  },
-  avatar: {
+  dropbox: {
     type: Sequelize.STRING,
     allowNull: true,
   },
   email: {
     type: Sequelize.STRING,
+    allowNull: false,
     validate: {
       isEmail: true,
     },
@@ -45,6 +42,18 @@ const Link = connection.define('link', {
     type: Sequelize.STRING,
     allowNull: false,
   },
+  url: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  deskripsi: {
+    type: Sequelize.STRING,
+    allowNull: true,
+  },
+  deadline: {
+    type: Sequelize.DATE,
+    allowNull: false,
+  },
   protected: {
     type: Sequelize.BOOLEAN,
     allowNull: false,
@@ -53,43 +62,16 @@ const Link = connection.define('link', {
     type: Sequelize.STRING,
     allowNull: true,
   },
+  
 });
 
-const Post = connection.define('post', {
-  title: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  content: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-});
 
 
 
 // Relations
-User.hasMany(Post);
 User.hasMany(Link);
-
-Post.belongsTo(User);
 Link.belongsTo(User);
 
-connection.sync({ force: true }).then(() => {
-  _.times(10, () => {
-    return User.create({
-      firstName: Faker.name.firstName(),
-      lastName: Faker.name.lastName(),
-      email: Faker.internet.email(),
-      avatar: Faker.image.avatar(),
-      desc: Faker.lorem.paragraph(1),
-    }).then(user => {
-      return user.createPost({
-        title: `Sample post by ${user.firstName}`,
-        content: Faker.lorem.paragraph(2),
-      });
-    });
-  });
-});
+connection.sync();
 
 export default connection;

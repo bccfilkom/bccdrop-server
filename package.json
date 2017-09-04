@@ -19,8 +19,11 @@
   "license": "MIT",
   "dependencies": {
     "apollo-server-express": "^1.0.2",
+    "asyncawait": "^1.0.6",
     "babel-cli": "^6.5.1",
+    "babel-preset-es2017": "^6.24.1",
     "babel-preset-node6": "^11.0.0",
+    "bcrypt": "^1.0.3",
     "body-parser": "^1.17.2",
     "express": "^4.13.4",
     "express-graphql": "^0.6.7",

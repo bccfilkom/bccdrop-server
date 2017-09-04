@@ -1,23 +1,37 @@
 export const typeDefs = `
+  scalar Date
+
   type User {
     id: Int!
-    firstName: String
-    lastName: String
+    username: String
     email: String
-    avatar: String
-    posts: [Post] # the list of Posts by this author
+    pasword: String
+    dropbox: String
+    email: String # the list of Posts by this author
+    links: [Link]
   }
-  type Post {
+
+  type Link {
     id: Int!
     title: String
-    content: String
-    user: User
+    url: String
+    deskripsi: User
+    deadline: Date
+    protected: Boolean
+    password: String
   }
   
   # the schema allows the following query:
   type Query {
-    posts: [Post]
+    links: [Link]
     user(userID: Int!): User
+  }
+
+  type Mutation {
+    # Register new user
+    register(username: String!, email: String!, password: String!): User
+   
+    
   }
 `;
 
