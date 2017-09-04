@@ -8,11 +8,17 @@ const APP_PORT = 3000;
 // Start
 const app = Express();
 
+const SECRET = 'aslkdjlkaj10830912039jlkoaiuwerasdjflkasd';
+
+
 // GraphQL
 app.use('/graphql', GraphHTTP({
   schema: Schema,
   pretty: true,
   graphiql: true,
+  context: {
+    SECRET,    
+  },
 }));
 
 //App Listen

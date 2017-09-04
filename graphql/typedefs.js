@@ -11,13 +11,18 @@ export const typeDefs = `
     links: [Link]
   }
 
+  type Token {
+    logintoken: String!
+  }
+
+
+
   type Link {
     id: Int!
     title: String
     url: String
     deskripsi: User
     deadline: Date
-    protected: Boolean
     password: String
   }
   
@@ -30,9 +35,11 @@ export const typeDefs = `
   type Mutation {
     # Register new user
     register(username: String!, email: String!, password: String!): User
-   
-    
+    login(username: String!, password: String!): Token
   }
 `;
+
+//createLink(title: String!, deskripsi: String, deadline: Date!, password: String)
+
 
 export default typeDefs;

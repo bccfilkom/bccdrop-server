@@ -2,7 +2,10 @@ import Db from '../db';
 import getSingleUser from '../logic/get_single_user';
 import { GraphQLScalarType } from 'graphql';
 import { Kind } from 'graphql/language';
-let bcrypt = require('bcrypt');
+import jwt from 'jsonwebtoken';
+
+const _ = require('lodash');
+const bcrypt = require('bcrypt');
 
 
 
@@ -42,6 +45,36 @@ export const resolvers = {
       const user = args;
       user.password = await bcrypt.hash(user.password, 12);
       return Db.models.user.create(user);
+    },
+    login: async (parent, { username, password }, { SECRET }) => {
+      console.log("WAAW")
+      const user = await Db.models.user.findOne({ where: { username } });
+      if (!user) {
+        throw new Error('Not user with that email');
+      }
+
+      console.log(user);
+      const valid = await bcrypt.compare(password, user.password);
+      if (!valid) {
+        throw new Error('Incorrect password');
+      }
+
+      // token = '12083098123414aslkjdasldf.asdhfaskjdh12982u793.asdlfjlaskdj10283491'
+      // verify: needs secret | use me for authentication
+      // decode: no secret | use me on the client side
+      const token = jwt.sign(
+        {
+          user: _.pick(user, ['id', 'username']),
+        },
+        SECRET,
+        {
+          expiresIn: '1y',
+        },
+      );
+
+      console.log(token);
+      let objToken = {logintoken: token}
+      return objToken;
     },
   }
 };

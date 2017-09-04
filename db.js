@@ -19,6 +19,7 @@ const User = connection.define('user', {
   username: {
     type: Sequelize.STRING,
     allowNull: false,
+    unique: true
   },
   password: {
     type: Sequelize.STRING,
@@ -52,10 +53,6 @@ const Link = connection.define('link', {
   },
   deadline: {
     type: Sequelize.DATE,
-    allowNull: false,
-  },
-  protected: {
-    type: Sequelize.BOOLEAN,
     allowNull: false,
   },
   password: {

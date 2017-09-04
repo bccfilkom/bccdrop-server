@@ -29,6 +29,8 @@
     "express-graphql": "^0.6.7",
     "faker": "^4.1.0",
     "graphql-tools": "^1.0.0",
+    "jsonwebtoken": "^7.4.3",
+    "lodash": "^4.17.4",
     "mysql": "^2.14.1",
     "mysql2": "^1.4.0",
     "sequelize": "^4.4.2"
