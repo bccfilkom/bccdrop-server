@@ -15,8 +15,6 @@ export const typeDefs = `
     logintoken: String!
   }
 
-
-
   type Link {
     id: Int!
     title: String

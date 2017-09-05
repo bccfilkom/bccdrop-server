@@ -3,7 +3,7 @@ import GraphHTTP from 'express-graphql';
 import Schema from './graphql_connector';
 
 // Config
-const APP_PORT = 3000;
+const APP_PORT = 7675;
 
 // Start
 const app = Express();
