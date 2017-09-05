@@ -29,6 +29,7 @@ export const typeDefs = `
     deadline: Date
     password: String
   }
+
   
   # the schema allows the following query:
   type Query {
