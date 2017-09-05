@@ -30,6 +30,10 @@ export const typeDefs = `
     password: String
   }
 
+  type Msg {
+    msg: String!
+  }
+
   
   # the schema allows the following query:
   type Query {
@@ -39,8 +43,9 @@ export const typeDefs = `
 
   type Mutation {
     # Register new user
-    register(username: String!, email: String!, password: String!): User
+    register(username: String!, email: String!, password: String!): Token
     login(username: String!, password: String!): Token
+    dropboxtoken(dropboxtoken: String!): Msg
   }
 `;
 
