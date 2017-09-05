@@ -1,25 +1,30 @@
 import Sequelize from 'sequelize';
 import Faker from 'faker';
 import _ from 'lodash';
+const config = require('./config');
 
-const connection = new Sequelize('naganoblog', 'root', 'root', {
-  host: 'localhost',
-  dialect: 'mysql',
-  port: 9898,
+const connection = new Sequelize(
+  config.db.dbname,
+  config.db.username,
+  config.db.password,
+  {
+    host: config.db.host,
+    dialect: config.db.dialect,
+    port: config.db.port,
 
-  pool: {
-    max: 10,
-    min: 0,
-    idle: 10000,
-  },
-
-});
+    pool: {
+      max: 10,
+      min: 0,
+      idle: 10000,
+    },
+  }
+);
 
 const User = connection.define('user', {
   username: {
     type: Sequelize.STRING,
     allowNull: false,
-    unique: true
+    unique: true,
   },
   password: {
     type: Sequelize.STRING,
@@ -59,10 +64,8 @@ const Link = connection.define('link', {
     type: Sequelize.STRING,
     allowNull: true,
   },
-  
+
 });
-
-
 
 
 // Relations

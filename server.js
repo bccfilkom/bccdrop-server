@@ -17,11 +17,11 @@ app.use('/graphql', GraphHTTP({
   pretty: true,
   graphiql: true,
   context: {
-    SECRET,    
+    SECRET,
   },
 }));
 
-//App Listen
-app.listen(APP_PORT, ()=> {
+// App Listen
+app.listen(APP_PORT, () => {
   console.log(`App listening on port ${APP_PORT}`);
 });
