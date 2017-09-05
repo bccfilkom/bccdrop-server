@@ -7,8 +7,14 @@ export const typeDefs = `
     email: String
     pasword: String
     dropbox: String
-    email: String # the list of Posts by this author
     links: [Link]
+  }
+
+  type UserProtected {
+    id: Int!
+    username: String
+    email: String
+    dropbox: String
   }
 
   type Token {
@@ -27,7 +33,7 @@ export const typeDefs = `
   # the schema allows the following query:
   type Query {
     links: [Link]
-    user(userID: Int!): User
+    user(userID: Int!): UserProtected
   }
 
   type Mutation {
