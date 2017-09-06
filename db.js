@@ -48,8 +48,13 @@ const Link = connection.define('link', {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  url: {
+  slug: {
     type: Sequelize.STRING,
+    allowNull: false,
+    unique: true,    
+  },
+  isProtected: {
+    type: Sequelize.BOOLEAN,
     allowNull: false,
   },
   deskripsi: {

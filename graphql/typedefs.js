@@ -30,6 +30,16 @@ export const typeDefs = `
     password: String
   }
 
+  type LinkProtected {
+    id: Int!
+    title: String!
+    isProtected: Boolean!
+    slug: String
+    deskripsi: User
+    deadline: Date
+    msg: Msg
+  }
+
   type Msg {
     msg: String!
   }
@@ -46,6 +56,7 @@ export const typeDefs = `
     register(username: String!, email: String!, password: String!): Token
     login(username: String!, password: String!): Token
     dropboxtoken(dropboxtoken: String!): Msg
+    createlink(title:  String!, isProtected: Boolean!, deskripsi: String, deadline: Date!, password: String): LinkProtected
   }
 `;
 

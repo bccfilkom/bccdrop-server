@@ -10,9 +10,7 @@ import getSingleUser from '../logic/get_single_user';
 import register from '../logic/register';
 import login from '../logic/login';
 import dropboxtoken from '../logic/dropboxtoken';
-
-
-
+import createlink from '../logic/createlink';
 
 
 export const resolvers = {
@@ -50,6 +48,8 @@ export const resolvers = {
     register: (parent, args, { SECRET }) => register(parent,args,SECRET),
     login: async (parent, { username, password }, { SECRET }) => login(parent,username,password,SECRET),
     dropboxtoken: requiresAuth.createResolver((parent, args, {user}) => dropboxtoken(parent,args,user.id)),
+    createlink: (parent, args, {user}) => createlink(parent,args,user),
+    
     //dropboxtoken: (parent, args, {user}) => dropboxtoken(parent,args,user),
   }
 };
