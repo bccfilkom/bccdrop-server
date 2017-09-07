@@ -47,7 +47,7 @@ export const resolvers = {
   Mutation: {
     register: (parent, args, { SECRET }) => register(parent,args,SECRET),
     login: async (parent, { username, password }, { SECRET }) => login(parent,username,password,SECRET),
-    dropboxtoken: requiresAuth.createResolver((parent, args, {user}) => dropboxtoken(parent,args,user.id)),
+    dropboxtoken: requiresAuth.createResolver((parent, args, {user}) => dropboxtoken(parent,args,user)),
     createlink: (parent, args, {user}) => createlink(parent,args,user),
     
     //dropboxtoken: (parent, args, {user}) => dropboxtoken(parent,args,user),
