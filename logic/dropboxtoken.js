@@ -4,10 +4,11 @@ import Db from '../db';
 export const dropboxtoken = async (parent, args, user) => {
     const token = args.dropboxtoken;
     console.log(user);
-    const usid = {id: user.id};
+    const usid = user.id;
+    console.log("new update")
     console.log(token);
     try {
-        Db.models.user.update({ dropbox: token }, { where: usid})
+        Db.models.user.update({ dropbox: token }, { where: { usid } })
         
     } catch (error) {
         throw new Error(error);
