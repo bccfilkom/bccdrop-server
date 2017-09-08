@@ -8,13 +8,12 @@ export const createlink = async (parent, args, user) => {
     const link = args;
     link.slug = await slugify(link.title);
     //console.log(user);
-
     //check if user loged in and authorized
     if(!user) {
         throw new Error('Not Authorized to make link');
         //auto
     } else {
-        link.userID = user.id;           
+        link.userId = user.id;           
     }
 
     let count = await Db.models.link.count({ where: {'slug': link.slug} });
@@ -22,11 +21,12 @@ export const createlink = async (parent, args, user) => {
     if(count > 0){
         throw new Error('Link already been used');        
     }
-    
-    if(link.isProtected){
+    if(link.password){
+        link.isProtected == true;
         link.password = await bcrypt.hash(link.password, 12);       
-    } else {
         
+    } else {
+        link.isProtected == false;
     }
     const linkFinal = await Db.models.link.create(link);
     linkFinal.msg = {msg: "Create link sucessfull"}

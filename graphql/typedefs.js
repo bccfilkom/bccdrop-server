@@ -14,7 +14,7 @@ export const typeDefs = `
     id: Int!
     username: String
     email: String
-    dropbox: String
+    dropboxauth: Boolean
   }
 
   type Token {
@@ -26,6 +26,7 @@ export const typeDefs = `
     title: String
     url: String
     deskripsi: User
+    isProtected: Boolean!    
     deadline: Date
     password: String
   }
@@ -37,7 +38,6 @@ export const typeDefs = `
     slug: String
     deskripsi: User
     deadline: Date
-    msg: Msg
   }
 
   type Msg {
@@ -48,7 +48,8 @@ export const typeDefs = `
   # the schema allows the following query:
   type Query {
     links: [Link]
-    user(userID: Int!): UserProtected
+    me: UserProtected
+    link(slug: String!): LinkProtected 
   }
 
   type Mutation {
@@ -56,7 +57,7 @@ export const typeDefs = `
     register(username: String!, email: String!, password: String!): Token
     login(username: String!, password: String!): Token
     dropboxtoken(token: String!): Msg
-    createlink(title:  String!, isProtected: Boolean!, deskripsi: String, deadline: Date!, password: String): LinkProtected
+    createlink(title:  String!, deskripsi: String, deadline: Date!, password: String): LinkProtected
   }
 `;
 

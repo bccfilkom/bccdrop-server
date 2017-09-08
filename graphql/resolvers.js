@@ -9,6 +9,7 @@ import { requiresAuth } from '../service/auth';
 import getSingleUser from '../logic/get_single_user';
 import register from '../logic/register';
 import login from '../logic/login';
+//import me from '../logic/me';
 import dropboxtoken from '../logic/dropboxtoken';
 import createlink from '../logic/createlink';
 
@@ -32,7 +33,9 @@ export const resolvers = {
   }),
   Query: {
     links: () => Db.models.link.findAll(),
-    user: (_, { userID }) => getSingleUser(userID),
+    //user: (_, { userID }) => getSingleUser(userID),
+    link: (_, {slug}) => Db.models.link.findOne({where: {slug: slug}}),
+    me: requiresAuth.createResolver((parent, args, {user}) => getSingleUser(user.id)),
   },
   User: {
     links(user) {

@@ -72,7 +72,6 @@ const Link = connection.define('link', {
 
 });
 
-
 // Relations
 User.hasMany(Link);
 Link.belongsTo(User);

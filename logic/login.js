@@ -30,7 +30,6 @@ export const login = async (parent, username, password, SECRET) => {
     //console.log(token);
     let objToken = {logintoken: token}
     return objToken;
-    //aasdasd
 
 }
 
