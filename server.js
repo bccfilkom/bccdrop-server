@@ -2,22 +2,26 @@ import Express from 'express';
 import GraphHTTP from 'express-graphql';
 import Schema from './graphql_connector';
 import jwt from 'jsonwebtoken';
+
+
 const multer  = require('multer')
-var FormData = require('form-data');
-var mime = require('mime');
-var fs = require('fs');
+const FormData = require('form-data');
+const mime = require('mime');
+const fs = require('fs');
+const upload = multer({ storage: storage })
+const cors = require('cors');
+const axios = require('axios')
+
+
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'tmp/')
   },
   filename: function (req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now() + '.' + mime.extension(file.mimetype))
+    cb(null, file.fieldname + '-' + Date.now())
   }
 })
 
-var upload = multer({ storage: storage })
-const cors = require('cors');
-var axios = require('axios')
 
 // Config
 const APP_PORT = 6321;

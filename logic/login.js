@@ -5,9 +5,11 @@ const _ = require('lodash');
 
 
 export const login = async (parent, username, password, SECRET) => {
-    const user = await Db.models.user.findOne({ where: { username } });
+    const user = await Db.models.user.findOne({ where: { 
+      $or: [{username: username}, {email: username}] 
+     } });
     if (!user) {
-      throw new Error('There is no user with that email');
+      throw new Error('There is no user with that email / username');
     }
 
     const valid = await bcrypt.compare(password, user.password);
