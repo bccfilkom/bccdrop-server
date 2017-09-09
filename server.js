@@ -17,6 +17,13 @@ const app = Express();
 
 const SECRET = 'aslkdjlkaj10830912039jlkoaiuwerasdjflkasd';
 
+app.use(function (req, res, next) {
+  // Website you wish to allow to connect
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  // Request methods you wish to allow
+  next();
+  });
+
 const verifyuser = async (req) => {
   const token = req.headers.authorization;
   if(token){
