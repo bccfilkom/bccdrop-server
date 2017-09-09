@@ -22,11 +22,11 @@ export const createlink = async (parent, args, user) => {
         throw new Error('Link already been used');        
     }
     if(link.password){
-        link.isProtected == true;
+        link.isProtected = true;
         link.password = await bcrypt.hash(link.password, 12);       
         
     } else {
-        link.isProtected == false;
+        link.isProtected = false;
     }
     console.log(link);
     const linkFinal = await Db.models.link.create(link);
