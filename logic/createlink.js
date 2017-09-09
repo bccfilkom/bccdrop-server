@@ -28,6 +28,7 @@ export const createlink = async (parent, args, user) => {
     } else {
         link.isProtected == false;
     }
+    console.log(linkFinal);
     const linkFinal = await Db.models.link.create(link);
     linkFinal.msg = {msg: "Create link sucessfull"}
     return linkFinal;
