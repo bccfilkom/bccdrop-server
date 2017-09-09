@@ -70,7 +70,7 @@ app.use('/graphql',cors(), GraphHTTP(req => ({
 );
 
 //File Upload
-app.post('/uploadfile', upload.any(), engine.upload);
+app.post('/uploadfile',cors(), upload.any(), engine.upload);
 // App Listenls
 app.listen(APP_PORT, () => {
   console.log(`App listening on port ${APP_PORT}`);
