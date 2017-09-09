@@ -25,7 +25,7 @@ export const typeDefs = `
     id: Int!
     title: String
     url: String
-    deskripsi: User
+    deskripsi: String
     isProtected: Boolean!    
     deadline: Date
     password: String
@@ -36,7 +36,7 @@ export const typeDefs = `
     title: String!
     isProtected: Boolean!
     slug: String
-    deskripsi: User
+    deskripsi: String
     deadline: Date
   }
 
@@ -47,7 +47,7 @@ export const typeDefs = `
   
   # the schema allows the following query:
   type Query {
-    links: [Link]
+    links: [LinkProtected]
     me: UserProtected
     link(slug: String!): LinkProtected 
   }

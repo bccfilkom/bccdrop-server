@@ -21,7 +21,7 @@ exports.upload = async (req, res) =>{
       
         //Clean tmp file when user exit app while uploading
         req.on('close', function (err){
-          fs.unlinkSync(__dirname + "/"+ file_url);    
+          fs.unlinkSync("./"+ file_url);    
         });
       
         let config = {
@@ -34,7 +34,7 @@ exports.upload = async (req, res) =>{
       
         axios.post('https://content.dropboxapi.com/2/files/upload', data, config)
         .then(function (res) {
-          fs.unlinkSync(__dirname + "/"+ file_url);
+          fs.unlinkSync("./" + file_url);
           sendOk();
       
         })
@@ -49,12 +49,16 @@ exports.upload = async (req, res) =>{
           });
         }
       } else {
-
+        return res.json({
+          msg: 'user dropbox is not connected'
+        });
 
       }
       
     } else {
-
+      return res.json({
+        msg: 'link tidak temukan'
+      });
     }
     
   } else {
