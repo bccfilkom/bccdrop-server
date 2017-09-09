@@ -7,6 +7,7 @@ import Db from './db';
 
 
 exports.upload = async (req, res) =>{
+  console.log(req);
   if(req.body.linkid){
     const link = await Db.models.link.findOne({ where: { id: req.body.linkid} });   
 
