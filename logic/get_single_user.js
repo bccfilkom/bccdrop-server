@@ -1,33 +1,42 @@
 import Db from '../db';
-const axios = require('axios');
+const request = require('request-promise');
 
 
-export const getSingleUser = (userID) => {
-  let user = Db.models.user.findOne({
+export const getSingleUser = async (userID) => {
+  let user = await Db.models.user.findOne({
     where: {
       id: userID,
     },
   });
-
-  if(user.dropbox){
-    let config = {
-      headers: {
-        'Authorization': `Bearer ${user.dropbox}`,
-      }
+  
+  const options = {
+    url: 'https://api.dropboxapi.com/2/users/get_current_account',
+    headers: {
+      'Authorization': `Bearer ${user.dropbox}`,
     }
-    axios.post('https://api.dropboxapi.com/2/users/get_current_account',config)
-    .then(function (res) {
+  };
+  
+  try {
+    let response = await request.post(options);
+    const resjson = JSON.parse(response);
+    if(resjson.email){
       user.dropboxauth = true;
-    })
-    .catch(function (err) {
-      res.sendStatus(404);    
-      console.log(err)
-    });
-  } else {
-    user.dropboxauth = false;
+      user.dropboxemail = resjson.email;
+      user.dropboxavatar = resjson.profile_photo_url;
+      return user;
+      
+    } else {
+      user.dropboxauth = false;
+      return user;
+      
+    }
   }
+  catch (error) {
+    user.dropboxauth = false;    
+    return user;
+  }  
 
-  return user;
+  
 };
 
 export default getSingleUser;

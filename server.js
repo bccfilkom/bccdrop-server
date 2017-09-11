@@ -31,7 +31,7 @@ app.use(function (req, res, next) {
   next();
   });
 
-  app.use(Express.static('public'))
+app.use(Express.static('public'))
   
 const verifyuser = async (req) => {
   const token = req.headers.authorization;

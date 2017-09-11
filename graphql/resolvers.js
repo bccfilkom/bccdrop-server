@@ -32,7 +32,7 @@ export const resolvers = {
     },
   }),
   Query: {
-    links: () => Db.models.link.findAll(),
+    links: requiresAuth.createResolver((parent, args, {user}) => Db.models.link.findAll({where: {userId: user.id}})),
     //user: (_, { userID }) => getSingleUser(userID),
     link: (_, {slug}) => Db.models.link.findOne({where: {slug: slug}}),
     me: requiresAuth.createResolver((parent, args, {user}) => getSingleUser(user.id)),

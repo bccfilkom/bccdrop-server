@@ -12,9 +12,11 @@ export const typeDefs = `
 
   type UserProtected {
     id: Int!
-    username: String
-    email: String
+    username: String!
+    email: String!
     dropboxauth: Boolean
+    dropboxemail: String
+    dropboxavatar: String
   }
 
   type Token {
@@ -25,7 +27,7 @@ export const typeDefs = `
     id: Int!
     title: String
     url: String
-    deskripsi: String
+    description: String
     isProtected: Boolean!    
     deadline: Date
     password: String
@@ -36,7 +38,7 @@ export const typeDefs = `
     title: String!
     isProtected: Boolean!
     slug: String
-    deskripsi: String
+    description: String
     deadline: Date
   }
 

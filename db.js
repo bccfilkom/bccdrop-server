@@ -57,7 +57,7 @@ const Link = connection.define('link', {
     type: Sequelize.BOOLEAN,
     allowNull: false,
   },
-  deskripsi: {
+  description: {
     type: Sequelize.STRING,
     allowNull: true,
   },
