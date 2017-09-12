@@ -5,8 +5,8 @@ var slugify = require('slugify')
 
 
 export const createlink = async (parent, args, user) => {
-    const link = args;
-    link.slug = await slugify(link.title);
+    let link = args;
+    link.slug = await slugify(link.slug);
     //console.log(user);
     //check if user loged in and authorized
     if(!user) {
@@ -28,7 +28,7 @@ export const createlink = async (parent, args, user) => {
     } else {
         link.isProtected = false;
     }
-    console.log(link);
+    //console.log(link);
     const linkFinal = await Db.models.link.create(link);
     linkFinal.msg = {msg: "Create link sucessfull"}
     return linkFinal;

@@ -5,7 +5,6 @@ const axios = require('axios');
 import Db from './db';
 
 
-
 exports.upload = async (req, res) =>{
   console.log(req);
   if(req.body.linkid){
@@ -45,7 +44,7 @@ exports.upload = async (req, res) =>{
       
         const sendOk = () => {
           return res.json({
-            msg: 'File berhasil di upload'
+            msg: 'File is sucessfuly uploaded'
           });
         }
       } else {
@@ -57,7 +56,7 @@ exports.upload = async (req, res) =>{
       
     } else {
       return res.json({
-        msg: 'link tidak temukan'
+        msg: 'link not found'
       });
     }
     

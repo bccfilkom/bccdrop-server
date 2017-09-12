@@ -9,9 +9,14 @@ import { requiresAuth } from '../service/auth';
 import getSingleUser from '../logic/get_single_user';
 import register from '../logic/register';
 import login from '../logic/login';
+import updatepassword from '../logic/updatepassword';
 //import me from '../logic/me';
 import dropboxtoken from '../logic/dropboxtoken';
 import createlink from '../logic/createlink';
+import deletelink from '../logic/deletelink';
+import updatelink from '../logic/updatelink';
+import dropboxunlink from '../logic/dropboxunlink';
+
 
 
 export const resolvers = {
@@ -50,9 +55,12 @@ export const resolvers = {
   Mutation: {
     register: (parent, args, { SECRET }) => register(parent,args,SECRET),
     login: async (parent, { username, password }, { SECRET }) => login(parent,username,password,SECRET),
+    updatePassword:requiresAuth.createResolver((parent, args, {user}) => updatepassword(parent,args,user.id)),
     dropboxtoken: requiresAuth.createResolver((parent, args, {user}) => dropboxtoken(parent,args,user)),
     createlink: (parent, args, {user}) => createlink(parent,args,user),
-    
+    deletelink: requiresAuth.createResolver((parent, args, {user}) => deletelink(parent,args,user.id)),
+    updatelink: requiresAuth.createResolver((parent, args, {user}) => updatelink(parent,args,user.id)),
+    dropboxunlink: requiresAuth.createResolver((parent, args, {user}) => dropboxunlink(parent,args,user.id)),
     //dropboxtoken: (parent, args, {user}) => dropboxtoken(parent,args,user),
   }
 };

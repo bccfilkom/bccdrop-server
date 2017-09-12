@@ -58,8 +58,12 @@ export const typeDefs = `
     # Register new user
     register(username: String!, email: String!, password: String!): Token
     login(username: String!, password: String!): Token
+    updatePassword(oldPassword: String!, newPassword: String!): Msg
     dropboxtoken(token: String!): Msg
-    createlink(title:  String!, deskripsi: String, deadline: Date!, password: String): LinkProtected
+    createlink(title:  String!,slug: String!, description: String, deadline: Date, password: String): LinkProtected
+    updatelink(linkId: Int!, title:  String!, slug: String!, description: String, deadline: Date, password: String): Msg
+    deletelink(linkId: Int!): Msg
+    dropboxunlink: Msg
   }
 `;
 
