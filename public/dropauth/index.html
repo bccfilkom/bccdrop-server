@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="BCC Drop it Here">
+        <meta name="keywords" content="BCC, Basic Computing Community, Application, Drop it to me, dropittome, Fakultas Ilmu Komputer, Universitas Brawijaa, UB, FILKOM">
+        <meta name="authors" content="RnD BCC Department">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <script>
+            function getParams(hashBased) {
+                var query;
+                if(hashBased) {
+                var pos = location.href.indexOf("#");
+                if(pos==-1) return [];
+                query = location.href.substr(pos+1);
+                } else {
+                query = location.search.substr(1);
+                }
+                var result = {};
+                query.split("&").forEach(function(part) {
+                if(!part) return;
+                part = part.split("+").join(" "); // replace every + with space, regexp-free version
+                var eq = part.indexOf("=");
+                var key = eq>-1 ? part.substr(0,eq) : part;
+                var val = eq>-1 ? decodeURIComponent(part.substr(eq+1)) : "";
+                var from = key.indexOf("[");
+                if(from==-1) result[decodeURIComponent(key)] = val;
+                else {
+                    var to = key.indexOf("]",from);
+                    var index = decodeURIComponent(key.substring(from+1,to));
+                    key = decodeURIComponent(key.substring(0,from));
+                    if(!result[key]) result[key] = [];
+                    if(!index) result[key].push(val);
+                    else result[key][index] = val;
+                }
+                });
+                return result;
+            }
+            
+            window.opener.updateToken(getParams(true).access_token);
+            window.close();
+        </script>
+    </head>
+
+    <body>
+        
+    </body>
+</html>

@@ -1,0 +1,271 @@
+/* ====== FONT FACE ====== */
+
+@font-face {
+    font-family: "museo";
+    src: url('/font/MuseoSans-100.otf');
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: "museo";
+    src: url('/font/MuseoSans-300.otf');
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: "museo";
+    src: url('/font/MuseoSans-700.otf');
+    font-weight: 700;
+}
+
+/* ====== DEFAULT ====== */
+* {
+	box-sizing: border-box;
+}
+
+html, body {
+	font-family: "museo", "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-size: 10pt;
+	line-height: 1.5;
+	height: 100%;
+    font-weight: normal;
+    color: #5a5a5a;
+}
+
+body {
+	font-size: 100%;
+	margin: 0;
+	padding: 0;
+    overflow-x: hidden;
+    background-image: url('/img/background-diagonal.png');
+    background-color: #FAFAFA;
+}
+
+html, body, #app, #app>div {
+  	height: 100%
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 90%; 
+    margin: 0 auto;
+}
+
+.container-one-page {
+    padding-top: 100px;
+	padding-bottom: 100px;
+}
+
+.bg-cover {
+	background-size: cover;
+}
+
+.bg-center {
+	background-position: center;
+}
+
+/*    DEFAULT    */
+.content {
+    margin-top: 50px;
+}
+
+h1 {
+    font-weight: normal;
+}
+
+.shadow {
+    width: 100%;
+    background: black;
+    height: 100%;
+    opacity: .8;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.custom-button {
+    padding: 9px 64px;
+    border: #009cff solid 1px;
+    border-radius: 50px;
+    transition: .3s;
+    color: #009cff;
+    background: none;
+    font-size: 13pt;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    margin: 5px 0;
+}
+
+.custom-button:hover {    
+    background: #009cff;
+    border-color: #009cff;
+    transition: .3s;
+    color: white;
+    text-decoration: none;
+}
+
+.custom-button:active {
+    background: rgb(4, 86, 95);
+    border-color: rgb(4, 86, 95);
+    transition: 0s;
+    color: white;
+    text-decoration: none;
+}
+
+a, a:visited{
+    text-decoration: none;
+    font-weight: 300;
+}
+
+h1, h2 {
+    font-weight: 300;
+}
+
+*:focus {
+    outline: 0 !important;
+}
+
+.btn-container-right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* ====== PARTICLES ====== */
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+form {
+    position: relative;
+}
+
+/* ====== ANIMATION ====== */
+.switch-wrapper {
+    position: relative;
+}
+
+.switch-wrapper > div {
+    position: relative;
+    width: 100%;
+}
+
+.example-enter {
+    opacity: 0.01;
+  }
+  
+  .example-enter.example-enter-active {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+  }
+  
+  .example-leave {
+    opacity: 1;
+  }
+  
+  .example-leave.example-leave-active {
+    opacity: 0.01;
+    transition: opacity 300ms ease-in;
+  }
+
+.error {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.opening-transition {
+    animation-name: fade;
+    animation-duration: .3s;
+    animation-fill-mode: forwards;
+    transition-timing-function: cubic-bezier(.31,.03,.5,1.5);
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+        transform: scale(1.1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ====== LOADING ====== */
+.sk-cube-grid {
+    width: 100px;
+    height: 100px;
+    margin: 100px auto;
+  }
+  
+  .sk-cube-grid .sk-cube {
+    width: 33%;
+    height: 33%;
+    background-color: #3498db;
+    float: left;
+    -webkit-animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
+            animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out; 
+  }
+  .sk-cube-grid .sk-cube1 {
+    -webkit-animation-delay: 0.2s;
+            animation-delay: 0.2s; }
+  .sk-cube-grid .sk-cube2 {
+    -webkit-animation-delay: 0.3s;
+            animation-delay: 0.3s; }
+  .sk-cube-grid .sk-cube3 {
+    -webkit-animation-delay: 0.4s;
+            animation-delay: 0.4s; }
+  .sk-cube-grid .sk-cube4 {
+    -webkit-animation-delay: 0.1s;
+            animation-delay: 0.1s; }
+  .sk-cube-grid .sk-cube5 {
+    -webkit-animation-delay: 0.2s;
+            animation-delay: 0.2s; }
+  .sk-cube-grid .sk-cube6 {
+    -webkit-animation-delay: 0.3s;
+            animation-delay: 0.3s; }
+  .sk-cube-grid .sk-cube7 {
+    -webkit-animation-delay: 0s;
+            animation-delay: 0s; }
+  .sk-cube-grid .sk-cube8 {
+    -webkit-animation-delay: 0.1s;
+            animation-delay: 0.1s; }
+  .sk-cube-grid .sk-cube9 {
+    -webkit-animation-delay: 0.2s;
+            animation-delay: 0.2s; }
+  
+  @-webkit-keyframes sk-cubeGridScaleDelay {
+    0%, 70%, 100% {
+      -webkit-transform: scale3D(1, 1, 1);
+              transform: scale3D(1, 1, 1);
+    } 35% {
+      -webkit-transform: scale3D(0, 0, 1);
+              transform: scale3D(0, 0, 1); 
+    }
+  }
+  
+  @keyframes sk-cubeGridScaleDelay {
+    0%, 70%, 100% {
+      -webkit-transform: scale3D(1, 1, 1);
+              transform: scale3D(1, 1, 1);
+    } 35% {
+      -webkit-transform: scale3D(0, 0, 1);
+              transform: scale3D(0, 0, 1);
+    } 
+  }
+
+  #cube-loading-container {
+      display: flex;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+  }

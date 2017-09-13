@@ -3,7 +3,7 @@ import GraphHTTP from 'express-graphql';
 import Schema from './graphql_connector';
 import jwt from 'jsonwebtoken';
 
-
+const path = require('path');
 const multer  = require('multer');
 const cors = require('cors');
 const engine = require('./engine');
@@ -31,6 +31,7 @@ app.use(function (req, res, next) {
   next();
   });
 
+  
 app.use(Express.static('public'))
   
 const verifyuser = async (req) => {
@@ -87,6 +88,10 @@ app.use('/graphql',cors(), GraphHTTP(req => ({
 
 //File Upload
 app.post('/uploadfile',cors(), upload.any(), engine.upload);
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/public/index.html'));
+});
 // App Listenls
 app.listen(APP_PORT, () => {
   console.log(`App listening on port ${APP_PORT}`);
