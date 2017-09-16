@@ -6,7 +6,8 @@ import Db from './db';
 
 
 exports.upload = async (req, res) =>{
-  console.log(req);
+  //console.log(req);
+  let file_url =  req.files[0].path;  
   if(req.body.linkid){
     const link = await Db.models.link.findOne({ where: { id: req.body.linkid} });   
 
@@ -14,8 +15,7 @@ exports.upload = async (req, res) =>{
       const user = await Db.models.user.findOne({ where: { id: link.userId} });   
 
       if(user.dropbox){
-        console.log(req.files[0].path);
-        let file_url =  req.files[0].path;
+        //console.log(req.files[0].path);
         let data = fs.createReadStream(__dirname + "/"+ file_url);
       
         //Clean tmp file when user exit app while uploading
@@ -39,7 +39,7 @@ exports.upload = async (req, res) =>{
         })
         .catch(function (err) {
           res.sendStatus(404);    
-          console.log(err)
+          //console.log(err)
         });
       
         const sendOk = () => {
@@ -48,6 +48,7 @@ exports.upload = async (req, res) =>{
           });
         }
       } else {
+        fs.unlinkSync("./" + file_url);        
         return res.json({
           msg: 'user dropbox is not connected'
         });
@@ -55,12 +56,14 @@ exports.upload = async (req, res) =>{
       }
       
     } else {
+      fs.unlinkSync("./" + file_url);      
       return res.json({
         msg: 'link not found'
       });
     }
     
   } else {
+    fs.unlinkSync("./" + file_url);    
     res.sendStatus(400);        
   }
 }

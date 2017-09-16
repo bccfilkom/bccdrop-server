@@ -8,6 +8,7 @@ const connection = new Sequelize(
   config.db.username,
   config.db.password,
   {
+    logging: false,    
     host: config.db.host,
     dialect: config.db.dialect,
     port: config.db.port,

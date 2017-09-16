@@ -269,3 +269,7 @@ form {
       align-items: center;
       justify-content: center;
   }
+
+  input:required {
+    box-shadow:none;
+}
