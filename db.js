@@ -38,6 +38,7 @@ const User = connection.define('user', {
   email: {
     type: Sequelize.STRING,
     allowNull: false,
+    unique: true,    
     validate: {
       isEmail: true,
     },
@@ -64,7 +65,7 @@ const Link = connection.define('link', {
   },
   deadline: {
     type: Sequelize.DATE,
-    allowNull: false,
+    allowNull: true,
   },
   password: {
     type: Sequelize.STRING,

@@ -7,7 +7,8 @@ const path = require('path');
 const multer  = require('multer');
 const cors = require('cors');
 const engine = require('./engine');
-var upload = multer({ dest: 'tmp/' });
+const compression = require('compression')
+const upload = multer({ dest: 'tmp/' });
 const cluster = require('cluster');
 const numCPUs = require('os').cpus().length;
 
@@ -49,20 +50,20 @@ if (cluster.isMaster) {
     next();
     });
 
-    
+  app.use(compression())    
   app.use(Express.static('public'))
     
   const verifyuser = async (req) => {
     const token = req.headers.authorization;
     if(token){
-      console.log(token);
+      //console.log(token);
       try {
         const { user } = await jwt.verify(token, SECRET);
         req.user = user;
       } catch (err) {
-        console.log(err);
+        //console.log(err);
       }
-      console.log(req.user);
+      //console.log(req.user);
       
       req.next();
     } else {

@@ -59,11 +59,14 @@ export const typeDefs = `
     register(username: String!, email: String!, password: String!): Token
     login(username: String!, password: String!): Token
     updatePassword(oldPassword: String!, newPassword: String!): Msg
+    updateprofile(newemail: String!): Msg
     dropboxtoken(token: String!): Msg
     createlink(title:  String!,slug: String!, description: String, deadline: Date, password: String): LinkProtected
     updatelink(linkId: Int!, title:  String!, slug: String!, description: String, deadline: Date, password: String): Msg
     deletelink(linkId: Int!): Msg
+    checklinkpassword(linkId: Int!, password: String!): Msg
     dropboxunlink: Msg
+
   }
 `;
 

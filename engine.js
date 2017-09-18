@@ -1,8 +1,9 @@
+import Db from './db';
 const FormData = require('form-data');
 const mime = require('mime');
 const fs = require('fs');
 const axios = require('axios');
-import Db from './db';
+const bcrypt = require('bcrypt');
 
 
 exports.upload = async (req, res) =>{
@@ -12,9 +13,42 @@ exports.upload = async (req, res) =>{
     const link = await Db.models.link.findOne({ where: { id: req.body.linkid} });   
 
     if(link){
+      let linkCheckPassed = true;
       const user = await Db.models.user.findOne({ where: { id: link.userId} });   
 
-      if(user.dropbox){
+      if(link.isProtected){
+        if(!req.body.password){
+          fs.unlinkSync("./"+ file_url);    
+          linkCheckPassed= false;          
+          return res.json({
+            msg: 'Link is protected with password'
+          });
+        }
+        const valid = await bcrypt.compare(req.body.password, link.password);  
+        if(!valid) {
+          linkCheckPassed = false;
+          fs.unlinkSync("./"+ file_url);              
+          return res.json({
+            msg: 'Password is wrong'
+          });
+        }      
+      }
+
+      if(link.deadline){
+        var todayDates = Math.floor(new Date().getTime() / 1000);
+        if(todayDates > Date.parse(link.deadline)) {
+          console.log("TODAY " + todayDates)
+          console.log("DEADLINE " + Date.parse(link.deadline))
+          
+          linkCheckPassed = false;
+          fs.unlinkSync("./"+ file_url);              
+          return res.json({
+            msg: 'Upload sudah melewati deadline'
+          });
+        } 
+      }
+
+      if(user.dropbox && linkCheckPassed === true){
         //console.log(req.files[0].path);
         let data = fs.createReadStream(__dirname + "/"+ file_url);
       
