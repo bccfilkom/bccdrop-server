@@ -47,10 +47,7 @@ if (cluster.isMaster) {
     // to the API (e.g. in case you use sessions)
     res.setHeader('Access-Control-Allow-Credentials', true);
     // Pass to next layer of middleware
-    if (req.method === "OPTIONS") 
-        res.sendStatus(200);
-    else 
-        next();
+    next();
     });
 
   app.use(compression())    

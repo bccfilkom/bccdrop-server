@@ -35,7 +35,7 @@ exports.upload = async (req, res) =>{
       }
 
       if(link.deadline){
-        var todayDates = Math.floor(new Date().getTime());
+        var todayDates = Math.floor(new Date().getTime() / 1000);
         if(todayDates > Date.parse(link.deadline)) {
           console.log("TODAY " + todayDates)
           console.log("DEADLINE " + Date.parse(link.deadline))
